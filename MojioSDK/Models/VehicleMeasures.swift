@@ -10,47 +10,47 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class VehicleMeasures: Object, Mappable {
+open class VehicleMeasures: Object, Mappable {
     
-    public dynamic var VehicleAcceleration : Acceleration? = nil
-    public dynamic var VehicleAccelerometer : Accelerometer? = nil
-    public dynamic var AccidentState : BooleanState? = nil
-    public dynamic var VehicleBattery : Battery? = nil
-    public dynamic var CurrentTrip : String? = nil
-    public dynamic var Deceleration : Acceleration? = nil
-    public var DiagnosticCodes = List<DiagnosticCode>()
-    public dynamic var VehicleFuelEfficiency : FuelEfficiency? = nil
+    open dynamic var VehicleAcceleration : Acceleration? = nil
+    open dynamic var VehicleAccelerometer : Accelerometer? = nil
+    open dynamic var AccidentState : BooleanState? = nil
+    open dynamic var VehicleBattery : Battery? = nil
+    open dynamic var CurrentTrip : String? = nil
+    open dynamic var Deceleration : Acceleration? = nil
+    open var DiagnosticCodes = List<DiagnosticCode>()
+    open dynamic var VehicleFuelEfficiency : FuelEfficiency? = nil
     
     // FuelEfficiencyCalculationMethod
-    public dynamic var FuelEfficiencyCalculationMethod : String? = nil// ['Query', 'EngineFuelRate', 'MassAirFlow', 'Calculated', 'None'],
-    public dynamic var VehicleFuelLevel : FuelLevel? = nil
+    open dynamic var FuelEfficiencyCalculationMethod : String? = nil// ['Query', 'EngineFuelRate', 'MassAirFlow', 'Calculated', 'None'],
+    open dynamic var VehicleFuelLevel : FuelLevel? = nil
     
     // FuelType
-    public dynamic var FuelType : String? = nil
-    public dynamic var GatewayTime : String? = nil
-    public dynamic var HarshEventState : HarshEvent? = nil
-    public dynamic var VehicleHeading : Heading? = nil
-    public dynamic var VehicleIdleState : IdleState? = nil
-    public dynamic var IgnitionState : BooleanState? = nil
-    public dynamic var VehicleLocation : Location? = nil
-    public var MilStatus = RealmOptional<Bool>()
-    public dynamic var MojioId : String? = nil
-    public dynamic var ParkedState : BooleanState? = nil
-    public dynamic var VehicleRPM : RPM? = nil
-    public dynamic var VehicleSpeed : Speed? = nil
-    public dynamic var TowState : BooleanState? = nil
-    public dynamic var VIN : String? = nil
-    public dynamic var VehicleVinDetails : VinDetails? = nil
-    public dynamic var VirtualOdometer : Odometer? = nil
-    public dynamic var VehicleOdometer : Odometer? = nil
-    public dynamic var Time : String? = nil
-    public dynamic var DisturbanceState : BooleanState? = nil
+    open dynamic var FuelType : String? = nil
+    open dynamic var GatewayTime : String? = nil
+    open dynamic var HarshEventState : HarshEvent? = nil
+    open dynamic var VehicleHeading : Heading? = nil
+    open dynamic var VehicleIdleState : IdleState? = nil
+    open dynamic var IgnitionState : BooleanState? = nil
+    open dynamic var VehicleLocation : Location? = nil
+    open var MilStatus = RealmOptional<Bool>()
+    open dynamic var MojioId : String? = nil
+    open dynamic var ParkedState : BooleanState? = nil
+    open dynamic var VehicleRPM : RPM? = nil
+    open dynamic var VehicleSpeed : Speed? = nil
+    open dynamic var TowState : BooleanState? = nil
+    open dynamic var VIN : String? = nil
+    open dynamic var VehicleVinDetails : VinDetails? = nil
+    open dynamic var VirtualOdometer : Odometer? = nil
+    open dynamic var VehicleOdometer : Odometer? = nil
+    open dynamic var Time : String? = nil
+    open dynamic var DisturbanceState : BooleanState? = nil
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
 
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         var diagnosticCodes = Array<DiagnosticCode>()
         diagnosticCodes <- map ["DiagnosticCodes"]
         

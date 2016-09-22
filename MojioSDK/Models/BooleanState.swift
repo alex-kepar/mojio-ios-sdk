@@ -10,16 +10,16 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class BooleanState: Object, Mappable {
+open class BooleanState: Object, Mappable {
     
-    public dynamic var Timestamp : String? = nil
-    public dynamic var Value : Bool = false
+    open dynamic var Timestamp : String? = nil
+    open dynamic var Value : Bool = false
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         Timestamp <- map["Timestamp"];
         Value <- map["Value"];
     }

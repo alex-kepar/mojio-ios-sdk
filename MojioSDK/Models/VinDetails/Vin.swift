@@ -10,46 +10,46 @@ import UIKit
 import RealmSwift
 import ObjectMapper
 
-public class Vin: Object, Mappable {
+open class Vin: Object, Mappable {
     
-    public dynamic var VIN : String? = nil
-    public dynamic var Timestamp : String? = nil
-    public dynamic var Market : String? = nil
-    public var Year : Int = 0
-    public dynamic var Make : String? = nil
-    public dynamic var Model : String? = nil
-    public dynamic var VehicleType : String? = nil
-    public dynamic var BodyType : String? = nil
-    public dynamic var DriveType : String? = nil
-    public dynamic var FuelTankSize : Float = 0
-    public dynamic var EPAFuelEfficiency : Float = 0
-    public dynamic var VehicleEngine : Engine? = nil
-    public dynamic var VehicleTransmission : Transmission? = nil
-    public var Warranties = List<Warranty>()
-    public var Recalls = List<Recall>()
-    public var ServiceBulletins = List<ServiceBulletin>()
+    open dynamic var VIN : String? = nil
+    open dynamic var Timestamp : String? = nil
+    open dynamic var Market : String? = nil
+    open var Year : Int = 0
+    open dynamic var Make : String? = nil
+    open dynamic var Model : String? = nil
+    open dynamic var VehicleType : String? = nil
+    open dynamic var BodyType : String? = nil
+    open dynamic var DriveType : String? = nil
+    open dynamic var FuelTankSize : Float = 0
+    open dynamic var EPAFuelEfficiency : Float = 0
+    open dynamic var VehicleEngine : Engine? = nil
+    open dynamic var VehicleTransmission : Transmission? = nil
+    open var Warranties = List<Warranty>()
+    open var Recalls = List<Recall>()
+    open var ServiceBulletins = List<ServiceBulletin>()
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init();
     }
     
-    public override static func primaryKey() -> String? {
+    open override static func primaryKey() -> String? {
         return "VIN"
     }
         
-    public func WarrantiesArray() -> NSArray {
-        return self.Warranties.toArray()
+    open func WarrantiesArray() -> [Warranty] {
+        return self.Warranties.toArray() as! [Warranty]
     }
     
-    public func RecallsArray() -> NSArray {
-        return self.Recalls.toArray()
+    open func RecallsArray() -> [Recall] {
+        return self.Recalls.toArray() as! [Recall]
     }
     
-    public func ServiceBulletinsArray() -> NSArray {
-        return self.ServiceBulletins.toArray()
+    open func ServiceBulletinsArray() -> [ServiceBulletin] {
+        return self.ServiceBulletins.toArray() as! [ServiceBulletin]
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         
         var warranties = Array<Warranty>()
         warranties <- map["Warranties"]

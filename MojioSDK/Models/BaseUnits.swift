@@ -8,34 +8,34 @@
 
 import Foundation
 
-public class RiskSeverity : NSObject {
-    public static let Unknown : String = "Unknown"
-    public static let Low : String = "Low"
-    public static let Medium : String = "Medium"
-    public static let High : String = "High"
-    public static let None : String = "None"
+open class RiskSeverity : NSObject {
+    open static let Unknown : String = "Unknown"
+    open static let Low : String = "Low"
+    open static let Medium : String = "Medium"
+    open static let High : String = "High"
+    open static let None : String = "None"
 }
 
-public class DistanceUnits : NSObject {
-    public static let Meters : String = "Meters"
-    public static let Miles : String = "Miles"
-    public static let Kilometers : String = "Kilometers"
-    public static let NauticalMiles : String = "NauticalMiles"
-    public static let CentiMeter : String = "CentiMeter"
-    public static let MilliMeter : String = "MilliMeter"
+open class DistanceUnits : NSObject {
+    open static let Meters : String = "Meters"
+    open static let Miles : String = "Miles"
+    open static let Kilometers : String = "Kilometers"
+    open static let NauticalMiles : String = "NauticalMiles"
+    open static let CentiMeter : String = "CentiMeter"
+    open static let MilliMeter : String = "MilliMeter"
 }
 
-public class FuelType : NSObject {
-    public static let Query : String = "Query"
-    public static let Gasoline : String = "Gasoline"
-    public static let Diesel : String = "Diesel"
-    public static let Electric : String = "Electric"
+open class FuelType : NSObject {
+    open static let Query : String = "Query"
+    open static let Gasoline : String = "Gasoline"
+    open static let Diesel : String = "Diesel"
+    open static let Electric : String = "Electric"
 }
 
-public class FuelEfficiencyCalculationMethod : NSObject {
-    public static let Query : String = "Query"
-    public static let EngineFuelRate : String = "EngineFuelRate"
-    public static let MassAirFlow : String = "MassAirFlow"
-    public static let Calculated : String = "Calculated"
-    public static let None : String = "None"
+open class FuelEfficiencyCalculationMethod : NSObject {
+    open static let Query : String = "Query"
+    open static let EngineFuelRate : String = "EngineFuelRate"
+    open static let MassAirFlow : String = "MassAirFlow"
+    open static let Calculated : String = "Calculated"
+    open static let None : String = "None"
 }

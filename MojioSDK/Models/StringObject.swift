@@ -10,6 +10,6 @@ import UIKit
 import Realm
 import RealmSwift
 
-public class StringObject: Object {
-    public dynamic var value : String? = nil
+open class StringObject: Object {
+    open dynamic var value : String? = nil
 }

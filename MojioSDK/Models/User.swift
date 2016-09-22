@@ -11,66 +11,66 @@ import ObjectMapper
 import RealmSwift
 import Realm
 
-public class User : Object, Mappable {
+open class User : Object, Mappable {
     
-    public dynamic var FirstName : String? = nil
-    public dynamic var LastName : String? = nil
-    public dynamic var UserName : String? = nil
-    public dynamic var Jurisdiction : String? = nil
-    public var Emails = List<Email>()
-    public var PhoneNumbers = List<PhoneNumber>()
-    public dynamic var Img : Image? = nil
-    public var Tags = List<StringObject>()
-    public dynamic var Id : String? = nil
-    public dynamic var CreatedOn : String? = nil
-    public dynamic var LastModified : String? = nil
+    open dynamic var FirstName : String? = nil
+    open dynamic var LastName : String? = nil
+    open dynamic var UserName : String? = nil
+    open dynamic var Jurisdiction : String? = nil
+    open var Emails = List<Email>()
+    open var PhoneNumbers = List<PhoneNumber>()
+    open dynamic var Img : Image? = nil
+    open var Tags = List<StringObject>()
+    open dynamic var Id : String? = nil
+    open dynamic var CreatedOn : String? = nil
+    open dynamic var LastModified : String? = nil
     
     /* PUT & POST properties */
-    public dynamic var email : String? = nil
+    open dynamic var email : String? = nil
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public override static func primaryKey() -> String? {
+    open override static func primaryKey() -> String? {
         return "Id"
     }
     
-    public func EmailsArray() -> NSArray {
-        return self.Emails.toArray()
+    open func EmailsArray() -> [Email] {
+        return self.Emails.toArray() as! [Email]
     }
     
-    public func PhoneNumbersArray() -> NSArray {
-        return self.PhoneNumbers.toArray()
+    open func PhoneNumbersArray() -> [PhoneNumber] {
+        return self.PhoneNumbers.toArray() as! [PhoneNumber]
     }
     
-    public func TagsArray() -> NSArray {
-        return self.Tags.toArray()
+    open func TagsArray() -> [StringObject] {
+        return self.Tags.toArray() as! [StringObject]
     }
 
-    public func jsonDict () -> NSDictionary {
+    open func jsonDict () -> NSDictionary {
         let dictionary : NSMutableDictionary = NSMutableDictionary()
         
         if self.UserName != nil {
-            dictionary.setObject(self.UserName!, forKey: "UserName")
+            dictionary.setObject(self.UserName!, forKey: "UserName" as NSCopying)
         }
         if self.email != nil {
-            dictionary.setObject(self.email!, forKey: "Email")
+            dictionary.setObject(self.email!, forKey: "Email" as NSCopying)
         }
         if self.FirstName != nil {
-            dictionary.setObject(self.FirstName!, forKey: "FirstName")
+            dictionary.setObject(self.FirstName!, forKey: "FirstName" as NSCopying)
         }
         if self.LastName != nil {
-            dictionary.setObject(self.LastName!, forKey: "LastName")
+            dictionary.setObject(self.LastName!, forKey: "LastName" as NSCopying)
         }
         if self.PhoneNumbers.count > 0 {
-            dictionary.setObject(self.PhoneNumbers.toArray(), forKey: "PhoneNumbers")
+            dictionary.setObject(self.PhoneNumbers.toArray(), forKey: "PhoneNumbers" as NSCopying)
         }
         
         return dictionary
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         
         var emails = Array<Email>()
         emails <- map["Emails"]

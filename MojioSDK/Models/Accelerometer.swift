@@ -10,19 +10,19 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class Accelerometer: Object, Mappable {
+open class Accelerometer: Object, Mappable {
     
-    public dynamic var X : ProperAcceleration? = nil
-    public dynamic var Y : ProperAcceleration? = nil
-    public dynamic var Z : ProperAcceleration? = nil
-    public dynamic var Magnitude : ProperAcceleration? = nil
-    public dynamic var SamplingInterval : TimePeriod? = nil
+    open dynamic var X : ProperAcceleration? = nil
+    open dynamic var Y : ProperAcceleration? = nil
+    open dynamic var Z : ProperAcceleration? = nil
+    open dynamic var Magnitude : ProperAcceleration? = nil
+    open dynamic var SamplingInterval : TimePeriod? = nil
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         X <- map["X"];
         Y <- map["Y"];
         Z <- map["Z"];

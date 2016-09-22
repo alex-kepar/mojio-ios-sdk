@@ -11,91 +11,91 @@ import ObjectMapper
 import RealmSwift
 import Realm
 
-public class GeofenceRegionType : NSObject {
-    public static let Circle = "Circle"
+open class GeofenceRegionType : NSObject {
+    open static let Circle = "Circle"
 }
 
-public class GeofenceRegion : Object, Mappable {
+open class GeofenceRegion : Object, Mappable {
 
-    public dynamic var Type: String? = nil
-    public dynamic var Lat: Double = 0
-    public dynamic var Lng: Double = 0
-    public dynamic var Radius: Distance? = nil
+    open dynamic var GeofenceType: String? = nil
+    open dynamic var Lat: Double = 0
+    open dynamic var Lng: Double = 0
+    open dynamic var Radius: Distance? = nil
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public func jsonDict() -> NSDictionary {
+    open func jsonDict() -> NSDictionary {
         var dictionary : [String:AnyObject] = [:]
         
-        if let id = self.Type {
-            dictionary["Type"] = id
+        if let id = self.GeofenceType {
+            dictionary["Type"] = id as AnyObject?
         }
         
-        dictionary["Lat"] = self.Lat
-        dictionary["Lng"] = self.Lng
+        dictionary["Lat"] = self.Lat as AnyObject?
+        dictionary["Lng"] = self.Lng as AnyObject?
         
         if let radius = self.Radius {
             dictionary["Radius"] = radius.jsonDict()
         }
         
-        return dictionary
+        return dictionary as NSDictionary
     }
     
-    public func mapping(map: Map) {
-        Type <- map["Type"]
+    open func mapping(map: Map) {
+        GeofenceType <- map["Type"]
         Lat <- map["Lat"]
         Lng <- map["Lng"]
         Radius <- map["Radius"]
     }
 }
 
-public class Geofence: Object, Mappable {
+open class Geofence: Object, Mappable {
     
-    public dynamic var Id : String? = nil
-    public dynamic var Name: String? = nil
-    public dynamic var Description: String? = nil
-    public dynamic var Region: GeofenceRegion? = nil
-    public var Tags = List<StringObject>()
-    public dynamic var CreatedOn : String? = nil
-    public dynamic var LastModified : String? = nil
+    open dynamic var Id : String? = nil
+    open dynamic var Name: String? = nil
+    open dynamic var Description: String? = nil
+    open dynamic var Region: GeofenceRegion? = nil
+    open var Tags = List<StringObject>()
+    open dynamic var CreatedOn : String? = nil
+    open dynamic var LastModified : String? = nil
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public override static func primaryKey() -> String? {
+    open override static func primaryKey() -> String? {
         return "Id"
     }
     
-    public func TagsArray() -> NSArray {
-        return self.Tags.toArray()
+    open func TagsArray() -> [StringObject] {
+        return self.Tags.toArray() as! [StringObject]
     }
     
-    public func jsonDict() -> NSDictionary {
+    open func jsonDict() -> NSDictionary {
         var dictionary : [String:AnyObject] = [:]
         
         if let id = self.Id {
-            dictionary["Id"] = id
+            dictionary["Id"] = id as AnyObject?
         }
         
         if let name = self.Name {
-            dictionary["Name"] = name
+            dictionary["Name"] = name as AnyObject?
         }
 
         if let description = self.Description {
-            dictionary["Description"] = description
+            dictionary["Description"] = description as AnyObject?
         }
         
         if let region = self.Region {
             dictionary["Region"] = region.jsonDict()
         }
         
-        return dictionary
+        return dictionary as NSDictionary
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         Id <- map["Id"]
         Name <- map["Name"]
         Description <- map["Description"]

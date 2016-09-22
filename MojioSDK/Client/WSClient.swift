@@ -11,18 +11,18 @@ import SwiftWebSocket
 import SwiftyJSON
 
 
-public class WSClient : RestClient {
+open class WSClient : RestClient {
     
-    public func watch(next: ((AnyObject) -> Void), completion: () -> Void, failure: (ErrorType) -> Void, file: String = #file) -> WebSocket {
+    open func watch(_ next: @escaping ((AnyObject) -> Void), completion: @escaping (() -> Void), failure: @escaping ((Error) -> Void), file: String = #file) -> WebSocket {
         
         
-        let request = NSMutableURLRequest(URL: NSURL(string:super.pushUrl!)!)
+        let request = NSMutableURLRequest(url: URL(string:super.pushUrl!)!)
         if let accessToken : String = super.accessToken() {
             request.addValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
 
         }
         
-        let ws = WebSocket(request: request)
+        let ws = WebSocket(request: request as URLRequest)
         
         ws.event.close = { code, reason, clean in
             print("WEBSOCKET: CLOSED - \(file)")
@@ -39,17 +39,12 @@ public class WSClient : RestClient {
         
         ws.event.message = { message in
             if let text = message as? String {
-                do {
-                    if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
-                        if let dict = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? NSDictionary {
-                            if let obj = super.parseDict(dict) {
-                                next(obj)
-                            }
+                if let data = text.data(using: String.Encoding.utf8) {
+                    if let dict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? [String : Any] {
+                        if let obj = super.parseDict(dict) {
+                            next(obj)
                         }
                     }
-                }
-                catch let error as NSError {
-                    failure(error)
                 }
             }
         }

@@ -10,20 +10,20 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class Transmission: Object, Mappable {
+open class Transmission: Object, Mappable {
     
-    public dynamic var Name : String? = nil
-    public dynamic var Type : String? = nil
-    public dynamic var DetailType : String? = nil
-    public dynamic var Gears : String? = nil
+    open dynamic var Name : String? = nil
+    open dynamic var TransmissionType : String? = nil
+    open dynamic var DetailType : String? = nil
+    open dynamic var Gears : String? = nil
 
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init();
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         Name <- map["Name"]
-        Type <- map["Type"]
+        TransmissionType <- map["Type"]
         DetailType <- map["DetailType"]
         Gears <- map["Gears"]
     }

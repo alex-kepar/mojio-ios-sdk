@@ -10,21 +10,21 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class DiagnosticCode: Object, Mappable {
+open class DiagnosticCode: Object, Mappable {
     
-    public dynamic var Code : String? = nil
-    public dynamic var Description : String? = nil
-    public dynamic var Timestamp : String? = nil
+    open dynamic var Code : String? = nil
+    open dynamic var Description : String? = nil
+    open dynamic var Timestamp : String? = nil
     
     // RiskSeverity
-    public dynamic var Severity : String? = nil
-    public dynamic var Instructions : String? = nil
+    open dynamic var Severity : String? = nil
+    open dynamic var Instructions : String? = nil
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         Code <- map["Code"];
         Description <- map["Description"];
         Timestamp <- map["Timestamp"];

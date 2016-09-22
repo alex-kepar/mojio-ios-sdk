@@ -11,16 +11,16 @@ import ObjectMapper
 import RealmSwift
 import Realm
 
-public class PhoneNumber : Object, Mappable {
+open class PhoneNumber : Object, Mappable {
 
-    public dynamic var PhoneNumber : String? = nil
-    public dynamic var Verified : Bool = false
+    open dynamic var PhoneNumber : String? = nil
+    open dynamic var Verified : Bool = false
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init();
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         PhoneNumber <- map["PhoneNumber"];
         Verified <- map["Verified"];
     }

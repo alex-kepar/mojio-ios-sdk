@@ -10,40 +10,40 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class SpeedUnits : NSObject {
-    public static let KilometersPerHour : String = "KilometersPerHour"
-    public static let MilesPerHour : String = "MilesPerHour"
+open class SpeedUnits : NSObject {
+    open static let KilometersPerHour : String = "KilometersPerHour"
+    open static let MilesPerHour : String = "MilesPerHour"
 }
 
-public class Speed: Object, Mappable {
+open class Speed: Object, Mappable {
     
-    public dynamic var BaseUnit : String? = nil
-    public dynamic var SpeedBandId : Int = 0
-    public dynamic var SpeedBandDuration : TimePeriod? = nil
-    public dynamic var Timestamp  : String? = nil
-    public dynamic var BaseValue : Float = 0
+    open dynamic var BaseUnit : String? = nil
+    open dynamic var SpeedBandId : Int = 0
+    open dynamic var SpeedBandDuration : TimePeriod? = nil
+    open dynamic var Timestamp  : String? = nil
+    open dynamic var BaseValue : Float = 0
     
     // SpeedUnits
-    public dynamic var Unit  : String? = nil
-    public dynamic var Value : Float = 0
+    open dynamic var Unit  : String? = nil
+    open dynamic var Value : Float = 0
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public func jsonDict () -> NSDictionary {
+    open func jsonDict () -> NSDictionary {
         let dictionary : NSMutableDictionary = NSMutableDictionary()
         
         if self.Unit != nil {
-            dictionary.setObject(self.Unit!, forKey: "Unit")
+            dictionary.setObject(self.Unit!, forKey: "Unit" as NSCopying)
         }
         
-        dictionary.setObject(self.Value, forKey: "Value")
+        dictionary.setObject(self.Value, forKey: "Value" as NSCopying)
         
         return dictionary
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         BaseUnit <- map["BaseUnit"];
         SpeedBandId <- map["SpeedBandId"];
         SpeedBandDuration <- map["SpeedBandDuration"];

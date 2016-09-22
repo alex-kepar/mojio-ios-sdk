@@ -10,30 +10,30 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class FuelEfficiencyUnits : NSObject {
-    public static let MilesPerGallon : String = "MilesPerGallon"
-    public static let KilometerPerLiter : String = "KilometerPerLiter"
-    public static let LitersPerHundredKilometers : String = "LitersPerHundredKilometers"
+open class FuelEfficiencyUnits : NSObject {
+    open static let MilesPerGallon : String = "MilesPerGallon"
+    open static let KilometerPerLiter : String = "KilometerPerLiter"
+    open static let LitersPerHundredKilometers : String = "LitersPerHundredKilometers"
 }
 
-public class FuelEfficiency: Object, Mappable {
+open class FuelEfficiency: Object, Mappable {
     
-    public dynamic var BaseUnit : String? = nil
-    public dynamic var Statistics : MeasurementStatistics? = nil
-    public dynamic var BenchmarkTime : String? = nil
-    public dynamic var BenchmarkStatistics : MeasurementStatistics? = nil
-    public dynamic var Timestamp : String? = nil
-    public dynamic var BaseValue : Float = 0
+    open dynamic var BaseUnit : String? = nil
+    open dynamic var Statistics : MeasurementStatistics? = nil
+    open dynamic var BenchmarkTime : String? = nil
+    open dynamic var BenchmarkStatistics : MeasurementStatistics? = nil
+    open dynamic var Timestamp : String? = nil
+    open dynamic var BaseValue : Float = 0
     
     // FuelEfficiencyUnits
-    public dynamic var Unit  : String? = nil
-    public dynamic var Value : Float = 0
+    open dynamic var Unit  : String? = nil
+    open dynamic var Value : Float = 0
 
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         BaseUnit <- map["BaseUnit"];
         Statistics <- map["Statistics"];
         BenchmarkTime <- map["BenchmarkTime"];

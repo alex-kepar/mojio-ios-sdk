@@ -6,21 +6,20 @@ use_frameworks!
 workspace 'MojioSDK.xcworkspace'
 
 target 'MojioSDK' do
-    xcodeproj 'MojioSDK.xcodeproj'
+    project 'MojioSDK.project'
 
-    pod 'Alamofire', '3.4.1'
-    pod 'SwiftyJSON', '2.3.2'
-    pod 'ObjectMapper'
-    pod 'RealmSwift', '1.0.2'
-    pod 'KeychainSwift', '~> 3.0.16'
-    pod 'OHHTTPStubs'
-    pod 'OHHTTPStubs/Swift'
-    pod 'SwiftWebSocket'
+    pod 'Alamofire', '~> 4.0'
+    pod 'SwiftyJSON', '~> 3.0'
+    pod 'ObjectMapper', '~> 2.0'
+    pod 'RealmSwift', '~> 1.1'
+    pod 'KeychainSwift', '~> 6.0'
+    pod 'OHHTTPStubs/Swift', '~> 5.2'
+    pod 'SwiftWebSocket', :git => 'https://github.com/tidwall/SwiftWebSocket', :branch => 'master', :tag => '2.6.4'
 
 end
 
 target 'MojioSDKTests' do
-    pod 'OHHTTPStubs'
-    pod 'OHHTTPStubs/Swift'
+    project 'MojioSDK.project'
+    pod 'OHHTTPStubs/Swift', '~> 5.2'
 end
 

@@ -10,30 +10,30 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class AccelerometerUnits : NSObject {
-    public static let MilliGUnits : String = "MilliGUnits"
-    public static let NewtonsPerKilogram : String = "NewtonsPerKilogram"
-    public static let XirgoUnit : String = "XirgoUnit"
-    public static let MetersPerSecondPerSecond : String = "MetersPerSecondPerSecond"
-    public static let CentimetersPerSecondPerSecond : String = "CentimetersPerSecondPerSecond"
-    public static let GUnits : String = "GUnits"
+open class AccelerometerUnits : NSObject {
+    open static let MilliGUnits : String = "MilliGUnits"
+    open static let NewtonsPerKilogram : String = "NewtonsPerKilogram"
+    open static let XirgoUnit : String = "XirgoUnit"
+    open static let MetersPerSecondPerSecond : String = "MetersPerSecondPerSecond"
+    open static let CentimetersPerSecondPerSecond : String = "CentimetersPerSecondPerSecond"
+    open static let GUnits : String = "GUnits"
 }
 
-public class ProperAcceleration: Object, Mappable {
+open class ProperAcceleration: Object, Mappable {
 
-    public dynamic var BaseUnit : String? = nil
-    public dynamic var Timestamp : String? = nil
-    public dynamic var BaseValue : Float = 0
+    open dynamic var BaseUnit : String? = nil
+    open dynamic var Timestamp : String? = nil
+    open dynamic var BaseValue : Float = 0
     
     // AccelerometerUnits
-    public dynamic var Unit : String? = nil
-    public dynamic var Value : Float = 0
+    open dynamic var Unit : String? = nil
+    open dynamic var Value : Float = 0
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         BaseUnit <- map["BaseUnit"];
         Timestamp <- map["Timestamp"];
         BaseValue <- map["BaseValue"];

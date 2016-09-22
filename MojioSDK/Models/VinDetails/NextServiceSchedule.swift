@@ -10,30 +10,34 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class NextServiceSchedule: Object, Mappable {
+open class NextServiceSchedule: Object, Mappable {
 
-    public dynamic var TimeStamp : String? = nil
-    public dynamic var Odometer : Float = 0
-    public var AgeInMonths = RealmOptional<Int>()
-    public dynamic var TimeUnits : String? = nil
-    public dynamic var TimeValue : Float = 0
-    public dynamic var DistanceUnits : String? = nil
-    public dynamic var DistanceValue : Float = 0
-    public var Services = List<PlatformServiceSchedule>()
+    open dynamic var TimeStamp : String? = nil
+    open dynamic var Odometer : Float = 0
+    open var AgeInMonths = RealmOptional<Int>()
+    open dynamic var TimeUnits : String? = nil
+    open dynamic var TimeValue : Float = 0
+    open dynamic var DistanceUnits : String? = nil
+    open dynamic var DistanceValue : Float = 0
+    open var Services = List<PlatformServiceSchedule>()
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init();
     }
     
-    public func AgeInMonthsAsIntNumber() -> NSNumber? {
-        return self.AgeInMonths.value as? NSNumber
+    open func AgeInMonthsAsIntNumber() -> NSNumber? {
+        if let value = self.AgeInMonths.value {
+            return NSNumber(value: value)
+        }
+        
+        return NSNumber(value: 0)
     }
     
-    public func ServicesArray() -> NSArray {
-        return self.Services.toArray()
+    open func ServicesArray() -> [PlatformServiceSchedule] {
+        return self.Services.toArray() as! [PlatformServiceSchedule]
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         
         var services = Array<PlatformServiceSchedule>()
         services <- map["Items"]

@@ -10,62 +10,62 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class App: Object, Mappable {
+open class App: Object, Mappable {
     
-    public dynamic var Name : String? = nil
-    public dynamic var Description : String? = nil
-    public var Downloads = RealmOptional<Int>()
-    public var RedirectUris = List<StringObject>()
-    public dynamic var AppImage : Image? = nil
-    public var Tags = List<StringObject>()
-    public dynamic var Id : String? = nil
-    public dynamic var CreatedOn : String? = nil
-    public dynamic var LastModified : String? = nil
+    open dynamic var Name : String? = nil
+    open dynamic var Description : String? = nil
+    open var Downloads = RealmOptional<Int>()
+    open var RedirectUris = List<StringObject>()
+    open dynamic var AppImage : Image? = nil
+    open var Tags = List<StringObject>()
+    open dynamic var Id : String? = nil
+    open dynamic var CreatedOn : String? = nil
+    open dynamic var LastModified : String? = nil
 
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init();
     }
     
-    public override static func primaryKey() -> String? {
+    open override static func primaryKey() -> String? {
         return "Id"
     }
     
-    public func DownloadsAsIntNumber() -> NSNumber {
+    open func DownloadsAsIntNumber() -> NSNumber {
         return self.Downloads.value! as NSNumber
     }
     
-    public func RedirectUrisArray() -> NSArray {
-        return self.RedirectUris.toArray()
+    open func RedirectUrisArray() -> [StringObject] {
+        return self.RedirectUris.toArray() as! [StringObject]
     }
     
-    public func TagsArray() -> NSArray {
-        return self.Tags.toArray()
+    open func TagsArray() -> [StringObject] {
+        return self.Tags.toArray() as! [StringObject]
     }
 
-    public func json () -> String? {
+    open func json () -> String? {
         let dictionary : NSMutableDictionary = NSMutableDictionary()
         
         if self.Name != nil {
-            dictionary.setObject(self.Name!, forKey: "Name")
+            dictionary.setObject(self.Name!, forKey: "Name" as NSCopying)
         }
         if self.Description != nil {
-            dictionary.setObject(self.Description!, forKey: "Description")
+            dictionary.setObject(self.Description!, forKey: "Description" as NSCopying)
         }
         if self.RedirectUris.count > 0 {
-            dictionary.setObject(self.RedirectUris.toArray(), forKey: "RedirectUris")
+            dictionary.setObject(self.RedirectUris.toArray(), forKey: "RedirectUris" as NSCopying)
         }
         
         if dictionary.count == 0 {
             return nil
         }
         
-        let data = try! NSJSONSerialization.dataWithJSONObject(dictionary, options:  NSJSONWritingOptions.PrettyPrinted)
+        let data = try! JSONSerialization.data(withJSONObject: dictionary, options:  JSONSerialization.WritingOptions.prettyPrinted)
         
-        return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+        return NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         
         var tags = Array<String>()
         tags <- map["Tags"]

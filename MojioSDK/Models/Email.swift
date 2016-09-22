@@ -10,15 +10,15 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class Email: Object, Mappable {
-    public dynamic var Verified : Bool = false
-    public dynamic var Address : String? = nil
+open class Email: Object, Mappable {
+    open dynamic var Verified : Bool = false
+    open dynamic var Address : String? = nil
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init();
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.Verified <- map["Verified"];
         self.Address <- map["Address"];
     }

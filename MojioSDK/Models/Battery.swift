@@ -10,32 +10,32 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class BatteryVoltageUnits : NSObject {
-    public static let MilliVolts : String = "MilliVolts"
-    public static let Volts : String = "Volts"
+open class BatteryVoltageUnits : NSObject {
+    open static let MilliVolts : String = "MilliVolts"
+    open static let Volts : String = "Volts"
 }
 
-public class Battery : Object, Mappable {
+open class Battery : Object, Mappable {
     
-    public dynamic var Connected : Bool = false
+    open dynamic var Connected : Bool = false
     
     // RiskSeverity
-    public dynamic var RiskSeverity : String? = nil
-    public dynamic var LowVoltageDuration : TimePeriod? = nil
-    public dynamic var HighVoltageDuration : TimePeriod? = nil
-    public dynamic var BaseUnit : String? = nil
-    public dynamic var Timestamp : String? = nil
-    public dynamic var BaseValue : Float = 0
+    open dynamic var RiskSeverity : String? = nil
+    open dynamic var LowVoltageDuration : TimePeriod? = nil
+    open dynamic var HighVoltageDuration : TimePeriod? = nil
+    open dynamic var BaseUnit : String? = nil
+    open dynamic var Timestamp : String? = nil
+    open dynamic var BaseValue : Float = 0
     
     // BatteryVoltageUnits
-    public dynamic var Unit : String? = nil
-    public dynamic var Value : Float = 0
+    open dynamic var Unit : String? = nil
+    open dynamic var Value : Float = 0
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         Connected <- map["Connected"];
         RiskSeverity <- map["RiskSeverity"];
         LowVoltageDuration <- map["LowVoltageDuration"];

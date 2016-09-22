@@ -10,50 +10,50 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-public class Group: Object, Mappable {
-    public dynamic var Name : String? = nil
-    public dynamic var Description : String? = nil
-    public var Users = List<User>()
-    public var Tags = List<StringObject>()
-    public dynamic var Id : String? = nil
-    public dynamic var CreatedOn : String? = nil
-    public dynamic var LastModified : String? = nil
+open class Group: Object, Mappable {
+    open dynamic var Name : String? = nil
+    open dynamic var Description : String? = nil
+    open var Users = List<User>()
+    open var Tags = List<StringObject>()
+    open dynamic var Id : String? = nil
+    open dynamic var CreatedOn : String? = nil
+    open dynamic var LastModified : String? = nil
     
-    public required convenience init?(_ map: Map) {
+    public required convenience init?(map: Map) {
         self.init()
     }
     
-    public override static func primaryKey() -> String? {
+    open override static func primaryKey() -> String? {
         return "Id"
     }
     
-    public func UsersArray() -> NSArray {
-        return self.Users.toArray()
+    open func UsersArray() -> [User] {
+        return self.Users.toArray() as! [User]
     }
     
-    public func TagsArray() -> NSArray {
-        return self.Tags.toArray()
+    open func TagsArray() -> [StringObject] {
+        return self.Tags.toArray() as! [StringObject]
     }
     
-    public func json () -> String? {
+    open func json () -> String? {
         let dictionary : NSMutableDictionary = NSMutableDictionary()
         
         if self.Name != nil {
-            dictionary.setObject(self.Name!, forKey: "Name")
+            dictionary.setObject(self.Name!, forKey: "Name" as NSCopying)
         }
         if self.Description != nil {
-            dictionary.setObject(self.Description!, forKey: "Description")
+            dictionary.setObject(self.Description!, forKey: "Description" as NSCopying)
         }
         if self.Users.count > 0 {
-            dictionary.setObject(self.Users.toArray(), forKey: "Users")
+            dictionary.setObject(self.Users.toArray(), forKey: "Users" as NSCopying)
         }
         
-        let data = try! NSJSONSerialization.dataWithJSONObject(dictionary, options:  NSJSONWritingOptions.PrettyPrinted)
-        return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+        let data = try! JSONSerialization.data(withJSONObject: dictionary, options:  JSONSerialization.WritingOptions.prettyPrinted)
+        return NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
 
     }
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         
         var users = Array<User>()
         users <- map["Users"]
